@@ -1,0 +1,35 @@
+.header {
+  box-shadow: 6px 5px 10px 0 rgb(0 0 0 / 10%);
+
+  &__logo {
+    img {
+      height: 40px;
+    }
+
+    .company {
+      font-weight: bold;
+      margin-left: 5px;
+    }
+  }
+
+  &__links {
+    .link {
+      margin-right: 20px;
+    }
+    .profile {
+      height: 40px;
+      width: 40px;
+      margin-right: 0;
+      border: 1px solid lightgray;
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        height: 16px;
+        width: 16px;
+      }
+    }
+  }
+}
