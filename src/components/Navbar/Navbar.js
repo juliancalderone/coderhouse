@@ -1,5 +1,7 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
+import logo from '../../assets/img/logo.png'
 import "./Navbar.scss";
+import CartWidget from "../CartWidget/CartWidget";
 
 export default function Header() {
   return (
@@ -8,10 +10,9 @@ export default function Header() {
         <Navbar.Brand href="#home">
           <div className="header__logo d-flex align-items-center text-black">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/2917/2917995.png"
+              src={logo}
               alt=""
             />
-            <h5 className="mb-0 company">Jane Shop</h5>
           </div>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -22,8 +23,9 @@ export default function Header() {
           <Nav className="mt-3 mb-3">
             <Nav.Link className="active" href="">Home</Nav.Link>
             <Nav.Link href="">Productos</Nav.Link>
-            <Nav.Link eventKey={2} href="">
-              Perfil
+            <Nav.Link href="">Perfil</Nav.Link>
+            <Nav.Link href="">
+              <CartWidget />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
