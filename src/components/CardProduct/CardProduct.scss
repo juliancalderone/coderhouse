@@ -1,0 +1,30 @@
+.custom-card {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 1px rgba(12, 26, 75, 0.24),
+  0px 3px 8px -1px rgba(50, 50, 71, 0.05);
+  border-radius: 16px;
+  padding: 8px 8px 25px 8px;
+  border: 0;
+  &__thumbnail {
+    width: 100%;
+  }
+  &__title {
+    color: #425466;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 600;
+    margin: 20px 0 10px;
+  }
+  &__price {
+    color: #27272E;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  &__description {
+    color: #425466;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23px;
+  }
+
+}
