@@ -1,16 +1,33 @@
 import { Col, Container, Row } from "react-bootstrap";
-import CardProduct from "../CardProduct/CardProduct";
+import { products } from "../../data/products";
+import Item from "../Item/Item";
 import './ItemListContainer.scss';
 
-export default function ItemListContainer({greeting}) {
+export default function ItemListContainer() {
+
+  const getProducts = new Promise ((resolve, reject) => {
+    setTimeout(() => {
+      resolve(products);
+    }, 3000)
+  })
+
+  getProducts.then((result) => {
+    console.log(result)
+  }, err => {
+    console.log(err)
+  }).catch((err) => {
+    console.log(err)
+  })
+
   return (
     <Container className="list-container">
-      {/* <h5 className="mb-0">{greeting}</h5> */}
       <Row>
-        <Col lg="3" sm="12">
-          <CardProduct />
-        </Col>
+        {products.map((product, index) => (
+          <Col lg="3" sm="12" key={index}>
+            <Item product={product} />
+          </Col>
+        ))}
       </Row>
     </Container>
-  )
+  );
 }

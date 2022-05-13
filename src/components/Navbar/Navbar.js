@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from '../../assets/img/logo.png'
 import "./Navbar.scss";
@@ -5,15 +6,20 @@ import CartWidget from "../CartWidget/CartWidget";
 
 export default function Header() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="header">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="light"
+      variant="light"
+      className="header"
+    >
       <Container>
-        <Navbar.Brand href="#home">
-          <div className="header__logo d-flex align-items-center text-black">
-            <img
-              src={logo}
-              alt=""
-            />
-          </div>
+        <Navbar.Brand>
+          <Link to="/">
+            <div className="header__logo d-flex align-items-center text-black">
+              <img src={logo} alt="" />
+            </div>
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse
@@ -21,12 +27,13 @@ export default function Header() {
           className="justify-content-end"
         >
           <Nav className="mt-3 mb-3">
-            <Nav.Link className="active" href="">Home</Nav.Link>
-            <Nav.Link href="">Productos</Nav.Link>
-            <Nav.Link href="">Perfil</Nav.Link>
-            <Nav.Link href="">
-              <CartWidget />
-            </Nav.Link>
+            <Link className="header__link" to="/">
+              Home
+            </Link>
+            <Link className="header__link" to="/sobre-nosotros">
+              Sobre nosotros
+            </Link>
+            <CartWidget />
           </Nav>
         </Navbar.Collapse>
       </Container>
