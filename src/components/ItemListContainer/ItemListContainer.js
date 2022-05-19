@@ -1,9 +1,10 @@
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { products } from "../../data/products";
-import Item from "../Item/Item";
+import ItemList from "../ItemList/ItemList";
 import './ItemListContainer.scss';
 
-export default function ItemListContainer() {
+export default function ItemListContainer({title, categoryId}) {
 
   const getProducts = new Promise ((resolve, reject) => {
     setTimeout(() => {
@@ -19,14 +20,21 @@ export default function ItemListContainer() {
     console.log(err)
   })
 
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    if(categoryId) {
+      setItems(products.filter(item => item.categoryId === +categoryId))
+    }
+    else {
+      setItems(products)
+    }
+  }, [categoryId])
+
   return (
     <Container className="list-container">
       <Row>
-        {products.map((product, index) => (
-          <Col lg="3" sm="12" key={index}>
-            <Item product={product} />
-          </Col>
-        ))}
+        <ItemList items={items} />
       </Row>
     </Container>
   );

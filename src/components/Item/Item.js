@@ -1,26 +1,22 @@
-import './Item.scss'
-import ItemCount from '../ItemCount/ItemCount';
+import { Link, useNavigate } from "react-router-dom";
+import AddButton from "../AddButton/AddButton";
+import "./Item.scss";
 
-export default function Item({product}) {
+export default function Item({ item }) {
+  
+  const navigate = useNavigate();
+
   return (
-    <>
-      <div className="custom-card">
-        <img
-          className="custom-card__thumbnail"
-          src={product.img}
-          alt="product"
-        />
-        <div className="px-2">
-          <h5 className="custom-card__title">{product.title}</h5>
-          <h5 className="custom-card__price">${product.price}</h5>
-          {/* <p className="custom-card__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </p> */}
-          <div>
-            <ItemCount stock="5" />
-          </div>
+    <div className="custom-card mb-3">
+      <img className="custom-card__thumbnail" src={item.img} alt="product" />
+      <div className="px-2">
+        <h5 className="custom-card__title">{item.title}</h5>
+        <h5 className="custom-card__price">${item.price}</h5>
+        <p onClick={() => navigate(`/product/${item.productId}`)}>ver</p>
+        <div>
+          <AddButton />
         </div>
       </div>
-    </>
+    </div>
   );
 }

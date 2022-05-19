@@ -1,4 +1,4 @@
-import Company from "../components/Company/Company";
+import Company from "../../components/Company/Company";
 
 export default function AboutUs() {
   return (
