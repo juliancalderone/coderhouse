@@ -5,7 +5,6 @@ export default function Category() {
   console.log(categoryId);
   return (
     <div>
-      <h1>Listado de productos</h1>
       <ItemListContainer categoryId={categoryId} />
     </div>
   );

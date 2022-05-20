@@ -4,7 +4,7 @@ export const products = [
     title: "Remera EHS",
     stock: 3,
     price: 2500,
-    img: "img/remera-ehs.png",
+    img: "https://res.cloudinary.com/infuze/image/upload/v1652998251/remera-ehs_kgbraw.png",
     categoryId: 1,
   },
   {
@@ -12,7 +12,7 @@ export const products = [
     title: "Remera EHS Ants",
     stock: 2,
     price: 2300,
-    img: "img/remera-white.png",
+    img: "https://res.cloudinary.com/infuze/image/upload/v1652998252/remera-white_vhpmqr.png",
     categoryId: 1,
   },
   {
@@ -20,7 +20,7 @@ export const products = [
     title: "Donación Simbólica",
     stock: 10,
     price: 500,
-    img: "img/donation.png",
+    img: "https://res.cloudinary.com/infuze/image/upload/v1652998251/donation_kxmlkx.png",
     categoryId: 2,
   },
   {
@@ -28,7 +28,7 @@ export const products = [
     title: "Subscripción mensual",
     stock: 10,
     price: 1000,
-    img: "img/premium-donation.png",
+    img: "https://res.cloudinary.com/infuze/image/upload/v1652998251/premium-donation_ajacfm.png",
     categoryId: 2,
   },
   {
@@ -36,7 +36,7 @@ export const products = [
     title: "Mate + Termo 1.2 Lts",
     stock: 5,
     price: 5000,
-    img: "img/mate.png",
+    img: "https://res.cloudinary.com/infuze/image/upload/v1652998251/mate_gekgb3.png",
     categoryId: 3,
   },
 ];

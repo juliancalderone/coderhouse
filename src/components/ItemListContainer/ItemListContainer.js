@@ -34,6 +34,7 @@ export default function ItemListContainer({title, categoryId}) {
   return (
     <Container className="list-container">
       <Row>
+        <h5 className="mb-4">Listado de productos por categoría: {categoryId || 'Todos'}</h5>
         <ItemList items={items} />
       </Row>
     </Container>
