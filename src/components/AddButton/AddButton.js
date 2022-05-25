@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./AddButton.scss";
 
-export default function AddButton() {
+export default function AddButton({count, setCount, onAdd}) {
   
-  const [count, setCount] = React.useState(1);
   const stock = 5;
 
-  useEffect(() => {
-    if (count !== 1) {
-      alert("Stock modificado")
-    }
-  }, [count]);
-
-  const onAdd = () => {
+  const onIncrease = () => {
+    console.log({ count });
     if (count < stock) {
       setCount(count + 1);
     }
@@ -22,10 +16,6 @@ export default function AddButton() {
     if (count > 1) {
       setCount(count - 1);
     }
-  };
-
-  const onSubmit = () => {
-    alert(`Se agregaron ${count} unidades`)
   };
 
   const StockButton = ({ handleOnClick, text }) => {
@@ -39,10 +29,10 @@ export default function AddButton() {
     );
   };
 
-  const AddButton = ({ handleOnSubmit }) => {
+  const AddButton = ({text}) => {
     return (
-      <button className="btn-primary" onClick={() => handleOnSubmit()}>
-        Agregar al carrito
+      <button className="btn-primary" onClick={onAdd}>
+        {text}
       </button>
     );
   };
@@ -54,10 +44,10 @@ export default function AddButton() {
         <div>
           <StockButton text="-" handleOnClick={onDecrease} />
           <small>{count}</small>
-          <StockButton text="+" handleOnClick={onAdd} />
+          <StockButton text="+" handleOnClick={onIncrease} />
         </div>
       </div>
-      <AddButton handleOnSubmit={onSubmit} />
+      <AddButton text="Agregar al carrito" />
     </>
   );
 }

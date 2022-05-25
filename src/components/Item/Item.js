@@ -1,9 +1,10 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddButton from "../AddButton/AddButton";
 import "./Item.scss";
 
 export default function Item({ item }) {
-  
+  const [count, setCount] = useState(1);
   const navigate = useNavigate();
 
   return (
@@ -24,7 +25,7 @@ export default function Item({ item }) {
         <h5 className="custom-card__title">{item.title}</h5>
         <h5 className="custom-card__price">${item.price}</h5>
         <div>
-          <AddButton />
+          <AddButton count={count} setCount={setCount} />
         </div>
       </div>
     </div>

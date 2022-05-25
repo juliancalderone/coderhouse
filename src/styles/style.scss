@@ -30,6 +30,24 @@ body {
   line-height: 23px;
 }
 
+// btn-secondary
+.btn-secondary {
+  background: #fff;
+  color: #4C6FFF;
+  padding: 12px 24px;
+  border: 1px solid #4C6FFF;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 14px;
+  line-height: 23px;
+  transition: all 0.2 ease-in;
+  &:hover {
+    background: #fff;
+    color: #1841e7;
+    border: 1px solid #4C6FFF;
+  }
+}
+
 .product-img {
   border-radius: 8px;
 }

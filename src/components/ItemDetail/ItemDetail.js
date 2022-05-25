@@ -1,13 +1,26 @@
+import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import AddButton from "../AddButton/AddButton";
+import { useNavigate } from "react-router-dom";
 
 export default function ItemDetail({ item }) {
+  const [count, setCount] = useState(1);
+  const [purchase, setPurchase] = useState(false);
+  const navigate = useNavigate();
+
+  const onAdd = () => {
+    setPurchase(true);
+  };
+
   return (
     <Row>
       <Col lg="5" className="mt-5">
         <img className="product-img" width={450} src={item.img} alt="product" />
       </Col>
-      <Col lg="7" className="mt-5 d-flex flex-column align-items-start justify-content-between">
+      <Col
+        lg="7"
+        className="mt-5 d-flex flex-column align-items-start justify-content-between"
+      >
         <h2>Detalle del producto</h2>
         <h5 className="mt-3 mb-4">{item.title}</h5>
         <p>Precio: ${item.price}</p>
@@ -20,7 +33,11 @@ export default function ItemDetail({ item }) {
           remaining essentially unchanged.
         </p>
         <div className="w-50">
-          <AddButton />
+          {purchase ? (
+            <button className="btn-secondary" onClick={() => {navigate('cart')} }>Ir al carrito</button>
+          ) : (
+            <AddButton count={count} setCount={setCount} onAdd={onAdd} />
+          )}
         </div>
       </Col>
     </Row>
