@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import AddButton from "../AddButton/AddButton";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/CartContext"
+
 
 export default function ItemDetail({ item }) {
+  
+  const { addToCart } = React.useContext(CartContext);
+
   const [count, setCount] = useState(1);
   const [purchase, setPurchase] = useState(false);
   const navigate = useNavigate();
@@ -36,7 +41,8 @@ export default function ItemDetail({ item }) {
           {purchase ? (
             <button className="btn-secondary" onClick={() => {navigate('cart')} }>Ir al carrito</button>
           ) : (
-            <AddButton count={count} setCount={setCount} onAdd={onAdd} />
+            // <AddButton count={count} setCount={setCount} onAdd={onAdd} onSubmit={() => addToCart(item)}/>
+            <AddButton count={count} setCount={setCount} onSubmit={() => addToCart(item)}/>
           )}
         </div>
       </Col>

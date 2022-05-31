@@ -1,7 +1,7 @@
 import React from "react";
 import "./AddButton.scss";
 
-export default function AddButton({count, setCount, onAdd}) {
+export default function AddButton({count, setCount, onAdd, onSubmit}) {
   
   const stock = 5;
 
@@ -29,9 +29,9 @@ export default function AddButton({count, setCount, onAdd}) {
     );
   };
 
-  const AddButton = ({text}) => {
+  const AddButton = ({text, handleOnSubmit}) => {
     return (
-      <button className="btn-primary" onClick={onAdd}>
+      <button className="btn-primary" onClick={() => handleOnSubmit()}>
         {text}
       </button>
     );
@@ -47,7 +47,7 @@ export default function AddButton({count, setCount, onAdd}) {
           <StockButton text="+" handleOnClick={onIncrease} />
         </div>
       </div>
-      <AddButton text="Agregar al carrito" />
+      <AddButton text="Agregar al carrito" handleOnSubmit={onSubmit} />
     </>
   );
 }
