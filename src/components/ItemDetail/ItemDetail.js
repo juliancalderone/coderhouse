@@ -6,7 +6,7 @@ import { CartContext } from "../../context/CartContext"
 
 
 export default function ItemDetail({ item }) {
-  
+  const {title, price, img, productId, stock} = item
   const { addToCart } = React.useContext(CartContext);
 
   const [count, setCount] = useState(1);
@@ -14,6 +14,15 @@ export default function ItemDetail({ item }) {
   const navigate = useNavigate();
 
   const onAdd = () => {
+    const prod = {
+      productId,
+      title, 
+      img,
+      price,
+      stock,
+      quantity: count
+    }
+    addToCart(prod)
     setPurchase(true);
   };
 
@@ -42,7 +51,7 @@ export default function ItemDetail({ item }) {
             <button className="btn-secondary" onClick={() => {navigate('cart')} }>Ir al carrito</button>
           ) : (
             // <AddButton count={count} setCount={setCount} onAdd={onAdd} onSubmit={() => addToCart(item)}/>
-            <AddButton count={count} setCount={setCount} onSubmit={() => addToCart(item)}/>
+            <AddButton count={count} setCount={setCount} stock={item.stock}  onSubmit={onAdd}/>
           )}
         </div>
       </Col>

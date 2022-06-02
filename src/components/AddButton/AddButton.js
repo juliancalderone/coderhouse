@@ -1,9 +1,7 @@
 import React from "react";
 import "./AddButton.scss";
 
-export default function AddButton({count, setCount, onAdd, onSubmit}) {
-  
-  const stock = 5;
+export default function AddButton({count, setCount, onAdd, onSubmit, stock}) {
 
   const onIncrease = () => {
     console.log({ count });
