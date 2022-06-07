@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { products } from "../../data/products";
 import ItemList from "../ItemList/ItemList";
 import './ItemListContainer.scss';
