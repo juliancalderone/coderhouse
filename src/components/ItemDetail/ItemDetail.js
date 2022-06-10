@@ -48,7 +48,7 @@ export default function ItemDetail({ item }) {
         </p>
         <div className="w-50">
           {purchase ? (
-            <button className="btn-secondary" onClick={() => {navigate('cart')} }>Ir al carrito</button>
+            <button className="btn-secondary" onClick={() => {navigate('/cart')} }>Ir al carrito</button>
           ) : (
             // <AddButton count={count} setCount={setCount} onAdd={onAdd} onSubmit={() => addToCart(item)}/>
             <AddButton count={count} setCount={setCount} stock={item.stock}  onSubmit={onAdd}/>

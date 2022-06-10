@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import AddButton from "../AddButton/AddButton";
 import "./Item.scss";
 
 export default function Item({ item }) {
-  const [count, setCount] = useState(1);
   const navigate = useNavigate();
 
   return (
@@ -24,9 +22,15 @@ export default function Item({ item }) {
       <div className="px-2">
         <h5 className="custom-card__title">{item.title}</h5>
         <h5 className="custom-card__price">${item.price}</h5>
-        <div>
-          <AddButton count={count} setCount={setCount} />
-        </div>
+        <p className="custom-card__description">
+          Descripción breve del producto
+        </p>
+        <button
+          className="btn-primary"
+          onClick={() => navigate(`/product/${item.productId}`)}
+        >
+          Ver producto
+        </button>
       </div>
     </div>
   );
