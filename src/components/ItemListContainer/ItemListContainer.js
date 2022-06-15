@@ -1,34 +1,38 @@
-import { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
-import { products } from "../../data/products";
-import ItemList from "../ItemList/ItemList";
-import './ItemListContainer.scss';
+import { useEffect, useState } from "react"
+import { Container, Row } from "react-bootstrap"
+import ItemList from "../ItemList/ItemList"
+import './ItemListContainer.scss'
+import { getFirestore, collection, getDocs, query, where } from "firebase/firestore"
 
 export default function ItemListContainer({title, categoryId}) {
-
-  const getProducts = new Promise ((resolve, reject) => {
-    setTimeout(() => {
-      resolve(products);
-    }, 3000)
-  })
-
-  getProducts.then((result) => {
-    console.log(result)
-  }, err => {
-    console.log(err)
-  }).catch((err) => {
-    console.log(err)
-  })
 
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    if(categoryId) {
-      setItems(products.filter(item => item.categoryId === +categoryId))
+    const db = getFirestore()
+
+    if (categoryId) {
+      const itemsByCategory = query(
+        collection(db, "items"),
+        where("categoryId", "==" ,categoryId)
+      )
+      getDocs(itemsByCategory).then((snapshots) => {
+        if (snapshots.size === 0) {
+          console.error("No hay productos")
+        }
+        setItems(snapshots.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+      })
+    } else {
+      const itemsCollection = collection(db, "items")
+      getDocs(itemsCollection).then((snapshots) => {
+        if (snapshots.size === 0) {
+          console.error("No hay productos")
+        }
+        setItems(snapshots.docs.map(doc => ({id: doc.id, ...doc.data()})))
+      });
     }
-    else {
-      setItems(products)
-    }
+    
+
   }, [categoryId])
 
   return (

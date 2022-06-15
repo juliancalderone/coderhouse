@@ -10,7 +10,7 @@ export default function Item({ item }) {
       <div className="custom-card__img-wrapper">
         <img className="thumbnail" src={item.img} alt="product" />
         <div
-          onClick={() => navigate(`/product/${item.productId}`)}
+          onClick={() => navigate(`/product/${item.id}`)}
           className="see-detail d-flex align-items-center justify-content-center"
         >
           <img
@@ -21,13 +21,13 @@ export default function Item({ item }) {
       </div>
       <div className="px-2">
         <h5 className="custom-card__title">{item.title}</h5>
-        <h5 className="custom-card__price">${item.price}</h5>
+        <h5 className="custom-card__category">${item.price}</h5>
         <p className="custom-card__description">
-          Descripción breve del producto
+          {item.description}
         </p>
         <button
           className="btn-primary"
-          onClick={() => navigate(`/product/${item.productId}`)}
+          onClick={() => navigate(`/product/${item.id}`)}
         >
           Ver producto
         </button>

@@ -30,16 +30,13 @@ export default function Header() {
             <Link className="header__link" to="/">
               Home
             </Link>
-            {/* <Link className="header__link" to="/sobre-nosotros">
-              Sobre nosotros
-            </Link> */}
-            <NavLink className="header__link" to="/category/1">
+            <NavLink className="header__link" to="/category/remeras">
               Remeras
             </NavLink>
-            <NavLink className="header__link" to="/category/2">
+            <NavLink className="header__link" to="/category/donaciones">
               Donaciones
             </NavLink>
-            <NavLink className="header__link" to="/category/3">
+            <NavLink className="header__link" to="/category/mate">
               Materos
             </NavLink>
             <CartWidget />

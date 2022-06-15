@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom";
 import  { CartContext } from "../../context/CartContext"
 import "./CartWidget.scss"
 
@@ -7,7 +8,9 @@ export default function CartWidget() {
   return (
     <>
       <div className="cart d-flex align-items-center">
-        <img height={25} src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Cart" />
+        <Link to="/cart">
+          <img height={25} src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Cart" />
+        </Link>
         <div className="cart__counter d-flex align-items-center justify-content-center">
           <span >{itemsInCart() || ''}</span>
         </div>
