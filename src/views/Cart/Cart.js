@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { Container, Row, Col } from "react-bootstrap";
@@ -7,11 +7,11 @@ import CartItem from "../../components/CartItem/CartItem";
 export default function Cart() {
   const { cart, getTotal } = React.useContext(CartContext);
   const navigate = useNavigate();
-
+  
   return (
     <div>
       <Container className="mt-4">
-        {cart.length ? (
+        {cart.length > 0 ? (
           <>
             {cart.map((item, index) => (
               <CartItem key={index} item={item} />

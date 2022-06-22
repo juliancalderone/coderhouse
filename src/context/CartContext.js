@@ -8,9 +8,9 @@ const CartProvider = ({children}) => {
   const [cart, setCart] = useState([])
 
   const addToCart = (item) => {
-    if (isInCart(item.productId)) {
+    if (isInCart(item.id)) {
       const newCart = cart.map((cartItem) => {
-        if (cartItem.productId === item.productId) {
+        if (cartItem.id === item.id) {
           return {...cartItem, quantity: cartItem.quantity + item.quantity}
         }
         return cartItem;
@@ -30,7 +30,7 @@ const CartProvider = ({children}) => {
   }
 
   const isInCart = (id) => {
-    return cart.find(item => item.productId === id)
+    return cart.find(item => item.id === id)
   }
 
   const itemsInCart = () => {
