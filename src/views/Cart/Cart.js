@@ -5,15 +5,27 @@ import { Container, Row, Col } from "react-bootstrap";
 import CartItem from "../../components/CartItem/CartItem";
 
 export default function Cart() {
-  const { cart } = React.useContext(CartContext);
+  const { cart, getTotal } = React.useContext(CartContext);
   const navigate = useNavigate();
+
   return (
     <div>
       <Container className="mt-4">
         {cart.length ? (
-          <div>
-            {cart.map((item) => <CartItem key={item.productId} item={item} />)}
-          </div>
+          <>
+            {cart.map((item, index) => (
+              <CartItem key={index} item={item} />
+            ))}
+
+            <p>Total: {getTotal() || 0}</p>
+            <button
+              onClick={() => {
+                navigate("/checkout");
+              }}
+            >
+              finalizar compra
+            </button>
+          </>
         ) : (
           <Row>
             <Col lg="5">

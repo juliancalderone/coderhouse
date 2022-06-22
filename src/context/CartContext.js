@@ -22,7 +22,7 @@ const CartProvider = ({children}) => {
   }
 
   const removeFromCart = (id) => {
-    setCart(cart.filter((carItem) => carItem.id !== id));
+    setCart(cart.filter((cartItem) => cartItem.id !== id));
   };
 
   const deteleAll = () => {
@@ -37,6 +37,10 @@ const CartProvider = ({children}) => {
     return cart.reduce((acc, item) => acc += item.quantity, 0)
   }
 
+  const getTotal = () => {
+    return cart.reduce((acc, item) => (acc += item.quantity * item.price), 0);
+  }
+
   return (
     <Provider value={{
       addToCart,
@@ -44,6 +48,7 @@ const CartProvider = ({children}) => {
       deteleAll,
       isInCart,
       itemsInCart,
+      getTotal,
       cart
     }}>{children}</Provider>
   )

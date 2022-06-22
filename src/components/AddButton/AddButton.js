@@ -4,7 +4,6 @@ import "./AddButton.scss";
 export default function AddButton({count, setCount, onAdd, onSubmit, stock}) {
 
   const onIncrease = () => {
-    console.log({ count });
     if (count < stock) {
       setCount(count + 1);
     }
