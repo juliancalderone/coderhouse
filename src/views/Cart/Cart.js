@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { Container, Row, Col } from "react-bootstrap";
 import CartItem from "../../components/CartItem/CartItem";
+import "./Cart.scss";
 
-export default function Cart() {
-  const { cart, getTotal } = React.useContext(CartContext);
+export default function Cart(item) {
+  const { cart, getTotal, deteleAll } = React.useContext(CartContext);
   const navigate = useNavigate();
   
   return (
@@ -13,18 +15,38 @@ export default function Cart() {
       <Container className="mt-4">
         {cart.length > 0 ? (
           <>
+            <div className="d-flex justify-content-between align-items-center">
+              <h5 className="mb-4 mt-4">Productos agregados al carrito</h5>
+              <div>
+                <Link className="mb-4 mx-4" to="/">
+                  Seguir comprando
+                </Link>
+                <button
+                  className="btn-danger text-white border-none"
+                  onClick={() => {
+                    deteleAll()
+                  }}
+                >
+                  Vaciar carrito
+                </button>
+              </div>
+            </div>
             {cart.map((item, index) => (
               <CartItem key={index} item={item} />
             ))}
-
-            <p>Total: {getTotal() || 0}</p>
-            <button
-              onClick={() => {
-                navigate("/checkout");
-              }}
-            >
-              finalizar compra
-            </button>
+            <div className="btn-wrapper d-flex align-items-center justify-content-between w-100">
+              <h5>
+                Total compra: <strong>${getTotal()}</strong>
+              </h5>
+              <button
+                className="btn-primary"
+                onClick={() => {
+                  navigate("/checkout");
+                }}
+              >
+                Finalizar compra
+              </button>
+            </div>
           </>
         ) : (
           <Row>

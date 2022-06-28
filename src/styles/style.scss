@@ -18,6 +18,14 @@ body {
   }
 }
 
+.border-none {
+  border: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 // btn-primary
 .btn-primary {
   background: #4C6FFF;
@@ -28,6 +36,9 @@ body {
   width: 100%;
   font-size: 14px;
   line-height: 23px;
+  &[disabled] {
+    background: #899adc;
+  }
 }
 
 // btn-secondary

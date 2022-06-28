@@ -1,19 +1,30 @@
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container, Form, Row, Col } from "react-bootstrap";
 import { CartContext } from "../../context/CartContext";
+import CartItem from "../../components/CartItem/CartItem";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   getFirestore,
   collection,
   addDoc,
   runTransaction,
-  doc
+  doc,
 } from "firebase/firestore";
 
-export default function Checkout() {
+export default function Checkout(notify) {
   const { cart, getTotal } = React.useContext(CartContext);
-
   const [data, setData] = useState();
   const [orderId, setOrderId] = React.useState();
+  const [disable, setDisable] = React.useState(true);
+  const [hideForm, setHideForm] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false)
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      setDisable(false);
+    }
+  }, [cart]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -26,12 +37,16 @@ export default function Checkout() {
       buyer: data,
       items: cart,
       total: getTotal(),
+      date: new Date(),
     };
+    setIsLoading(true)
     const db = getFirestore();
     const ordersCollection = collection(db, "orders");
     await addDoc(ordersCollection, order).then(({ id }) => {
+      setIsLoading(false)
       setOrderId(id);
-      updateProducts()
+      updateProducts();
+      setHideForm(false);
     });
   };
 
@@ -53,28 +68,83 @@ export default function Checkout() {
   return (
     <div>
       <Container>
-        <form onSubmit={handleSubmit}>
-          <h1>Checkout</h1>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            onChange={handleChange}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-          />
-          <input
-            type="phone"
-            name="phone"
-            placeholder="Phone"
-            onChange={handleChange}
-          />
-          <input type="submit" value="Finalizar compra" />
-        </form>
+        <div className="mt-4 mb-5">
+          <h5>Checkout</h5>
+          {hideForm ? (
+            <Row className="mt-4">
+              <Col lg="5" sm="12">
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3" controlId="fullname">
+                    <Form.Label>Nombre completo</Form.Label>
+                    <Form.Control
+                      required
+                      onChange={handleChange}
+                      type="text"
+                      name="fullname"
+                      placeholder="Ingrese su nombre completo"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      required
+                      name="email"
+                      onChange={handleChange}
+                      type="email"
+                      placeholder="Ingrese su email"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="phone">
+                    <Form.Label>Celular</Form.Label>
+                    <Form.Control
+                      required
+                      name="phone"
+                      onChange={handleChange}
+                      type="text"
+                      placeholder="Ingrese su número"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="address">
+                    <Form.Label>Dirección</Form.Label>
+                    <Form.Control
+                      required
+                      onChange={handleChange}
+                      type="text"
+                      name="address"
+                      placeholder="Ingrese su dirección"
+                    />
+                  </Form.Group>
+                  <div className="d-flex justify-content-end w-100 mt-4">
+                    <input
+                      className="btn-primary w-50"
+                      type="submit"
+                      value="Finalizar compra"
+                      disabled={disable}
+                    />
+                  </div>
+                </Form>
+              </Col>
+              <Col lg="7" sm="12">
+                <div className="w-100">
+                  {cart.map((item, index) => (
+                    <CartItem key={index} item={item} />
+                  ))}
+                </div>
+                <h5>
+                  Total compra: <strong>${getTotal()}</strong>
+                </h5>
+              </Col>
+            </Row>
+          ) : (
+            <div>
+              <h5>Orden generada exitosamente!</h5>
+              <p>Orden: {orderId}</p>
+              <p>
+                En breve nos comunicaremos para coordinar el pago y la entrega.
+              </p>
+            </div>
+          )}
+        </div>
       </Container>
     </div>
   );
