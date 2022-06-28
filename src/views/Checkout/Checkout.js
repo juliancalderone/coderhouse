@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Form, Row, Col } from "react-bootstrap";
 import { CartContext } from "../../context/CartContext";
 import CartItem from "../../components/CartItem/CartItem";
-import "react-toastify/dist/ReactToastify.css";
+import Lottie from "lottie-react";
+import order from "../../assets/img/order.json"
 
 import {
   getFirestore,
@@ -18,7 +19,6 @@ export default function Checkout(notify) {
   const [orderId, setOrderId] = React.useState();
   const [disable, setDisable] = React.useState(true);
   const [hideForm, setHideForm] = React.useState(true);
-  const [isLoading, setIsLoading] = React.useState(false)
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -39,11 +39,9 @@ export default function Checkout(notify) {
       total: getTotal(),
       date: new Date(),
     };
-    setIsLoading(true)
     const db = getFirestore();
     const ordersCollection = collection(db, "orders");
     await addDoc(ordersCollection, order).then(({ id }) => {
-      setIsLoading(false)
       setOrderId(id);
       updateProducts();
       setHideForm(false);
@@ -138,6 +136,7 @@ export default function Checkout(notify) {
           ) : (
             <div>
               <h5>Orden generada exitosamente!</h5>
+              <Lottie className="order-animation" animationData={order} loop={false} />
               <p>Orden: {orderId}</p>
               <p>
                 En breve nos comunicaremos para coordinar el pago y la entrega.
