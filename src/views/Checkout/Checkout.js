@@ -14,7 +14,7 @@ import {
 } from "firebase/firestore";
 
 export default function Checkout(notify) {
-  const { cart, getTotal } = React.useContext(CartContext);
+  const { cart, getTotal, deteleAll } = React.useContext(CartContext);
   const [data, setData] = useState();
   const [orderId, setOrderId] = React.useState();
   const [disable, setDisable] = React.useState(true);
@@ -45,6 +45,7 @@ export default function Checkout(notify) {
       setOrderId(id);
       updateProducts();
       setHideForm(false);
+      deteleAll();
     });
   };
 

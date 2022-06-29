@@ -14,7 +14,7 @@ const CartItem = ({ item }) => {
             <th>Cantidad</th>
             <th>Precio</th>
             <th>Total</th>
-            {/* <th>Acciones</th> */}
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -30,7 +30,7 @@ const CartItem = ({ item }) => {
             <td>{item.quantity}</td>
             <td>{item.price}</td>
             <td>{item.price * item.quantity}</td>
-            {/* <td>
+            <td>
               <div
                 className="cursor-pointer d-flex"
                 onClick={() => {
@@ -39,13 +39,13 @@ const CartItem = ({ item }) => {
               >
                 <p className="mb-0 mx-2">Eliminar</p>
                 <img
-                  src="https://cdn-icons.flaticon.com/png/512/3177/premium/3177276.png?token=exp=1656390738~hmac=eba16aa9bcd864efc49780c510961c7a"
+                  src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png"
                   alt=""
                   height={20}
                   width={20}
                 />
               </div>
-            </td> */}
+            </td>
           </tr>
         </tbody>
       </Table>
