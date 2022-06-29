@@ -1,3 +1,5 @@
+![](https://github.com/juliancalderone/coderhouse/blob/main/src/assets/img/coderhouse.gif)
+
 # Coderhouse - Julián Calderone
 
 Proyecto creado durante la cursada para la fundación [Hormiguero Solidario](https://www.instagram.com/hormiguero.solidario/)
