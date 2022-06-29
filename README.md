@@ -1,4 +1,4 @@
-![GIF](https://media.giphy.com/media/TKrNRZtFBttDuB9B8Y/giphy.gif)
+![GIF](https://github.com/juliancalderone/coderhouse/blob/main/src/assets/img/coderhouse.gif)
 
 # Coderhouse - Julián Calderone
 
